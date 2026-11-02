@@ -1,0 +1,37 @@
+{
+  "manifest_version": 3,
+  "name": "TabKitty - Cat-Themed Browser Tab Manager",
+  "version": "1.0.0",
+  "description": "Every tab deserves a little catnap. Transform your open Chrome tabs into cute virtual cats with rooms, sessions, and cozy productivity features.",
+  "permissions": [
+    "tabs",
+    "tabGroups",
+    "storage",
+    "sessions"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "TabKitty",
+    "default_icon": {
+      "16": "icons/icon16.svg",
+      "48": "icons/icon48.svg",
+      "128": "icons/icon128.svg"
+    }
+  },
+  "chrome_url_overrides": {
+    "newtab": "dashboard.html"
+  },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  },
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "icons": {
+    "16": "icons/icon16.svg",
+    "48": "icons/icon48.svg",
+    "128": "icons/icon128.svg"
+  }
+}

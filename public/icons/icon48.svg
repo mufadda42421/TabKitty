@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+  <rect x="2" y="2" width="44" height="44" rx="14" fill="#FFF8EF" stroke="#B99AFF" stroke-width="2"/>
+  <!-- Ears -->
+  <polygon points="12,18 16,7 22,14" fill="#B99AFF"/>
+  <polygon points="36,18 32,7 26,14" fill="#B99AFF"/>
+  <!-- Head -->
+  <ellipse cx="24" cy="26" rx="16" ry="14" fill="#FFF8EF" stroke="#29213F" stroke-width="1.8"/>
+  <!-- Eyes -->
+  <path d="M 17 24 Q 19 22 21 24" fill="none" stroke="#29213F" stroke-width="1.8" stroke-linecap="round"/>
+  <path d="M 27 24 Q 29 22 31 24" fill="none" stroke="#29213F" stroke-width="1.8" stroke-linecap="round"/>
+  <!-- Nose/mouth -->
+  <circle cx="24" cy="27" r="1.2" fill="#FF94B8"/>
+  <path d="M 24 28 Q 22 30 20 29 M 24 28 Q 26 30 28 29" fill="none" stroke="#29213F" stroke-width="1.2" stroke-linecap="round"/>
+</svg>

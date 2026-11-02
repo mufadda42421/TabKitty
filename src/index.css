@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --color-lavender: #B99AFF;
+    --color-pink: #FFD6E7;
+    --color-cream: #FFF8EF;
+    --color-dark-purple: #29213F;
+    --color-mint: #C8F2DF;
+  }
+}
+
+/* Smooth tab animations & cozy scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(185, 154, 255, 0.3);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(185, 154, 255, 0.6);
+}

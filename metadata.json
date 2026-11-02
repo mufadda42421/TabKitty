@@ -1,0 +1,6 @@
+{
+  "name": "TabKitty - Cat-Themed Browser Tab Manager",
+  "description": "Every tab deserves a little catnap. Transform your open browser tabs into adorable virtual cats with rooms, sessions, and cozy productivity features.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TabKitty Dashboard - Every tab deserves a little catnap</title>
+  <link rel="stylesheet" href="dashboard.css">
+  <link rel="icon" type="image/svg+xml" href="icons/icon128.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Quicksand:wght@600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body class="light-theme">
+  <!-- Toast Notification -->
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+  <!-- Main Wrapper -->
+  <div class="dashboard-layout">
+    <!-- Top Bar -->
+    <header class="top-nav">
+      <div class="nav-brand">
+        <img src="icons/icon48.svg" alt="TabKitty Mascot" class="nav-logo">
+        <div>
+          <div class="nav-title-row">
+            <span class="nav-title">TabKitty</span>
+            <span class="nav-pill-badge">v1.0</span>
+          </div>
+          <span class="nav-tagline">Every tab deserves a little catnap.</span>
+        </div>
+      </div>
+
+      <div class="nav-clock-area">
+        <div id="nav-time" class="nav-time">12:00 PM</div>
+        <div id="nav-date" class="nav-date">Monday, November 2</div>
+      </div>
+
+      <div class="nav-actions">
+        <button id="theme-toggle" class="nav-btn" title="Toggle Light/Dark Theme" aria-label="Toggle theme">
+          <svg id="theme-icon-sun" class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1" x2="12" y2="3"/>
+            <line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/>
+            <line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+          <svg id="theme-icon-moon" class="icon-moon hidden" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
+        <button id="sound-toggle" class="nav-btn" title="Toggle Cat Sounds" aria-label="Toggle sound">
+          <svg id="sound-icon-on" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/>
+          </svg>
+          <svg id="sound-icon-off" class="hidden" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+            <line x1="23" y1="9" x2="17" y2="15"/>
+            <line x1="17" y1="9" x2="23" y2="15"/>
+          </svg>
+        </button>
+        <button id="btn-collection-modal" class="nav-btn" title="Cat Breeds & Collection">
+          <span>🐱 Collection</span>
+        </button>
+        <button id="btn-sessions-modal" class="nav-btn" title="Saved Sessions">
+          <span>📁 Sessions</span>
+        </button>
+        <button id="btn-open-options-page" class="nav-btn" title="Settings" aria-label="Settings">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="dashboard-body">
+      <!-- Welcome Banner & Cozy Greeting -->
+      <section class="hero-greeting-card">
+        <div class="greeting-content">
+          <div class="greeting-kicker" id="greeting-kicker">Cozy Afternoon Sanctuary</div>
+          <h2 class="greeting-title" id="user-greeting">Good day, Human! Your cats are purring softly.</h2>
+          <p class="greeting-sub" id="greeting-stats-summary">Synchronizing browser tabs into cozy companions...</p>
+        </div>
+        <div class="hero-cat-art" id="hero-mascot-container"></div>
+      </section>
+
+      <!-- Key Statistics Strip -->
+      <section class="stats-strip">
+        <div class="stat-card">
+          <div class="stat-icon-wrap" style="background: rgba(185, 154, 255, 0.15); color: #B99AFF;">🐱</div>
+          <div>
+            <div class="stat-value tabular-nums" id="stat-total-cats">0</div>
+            <div class="stat-label">Total Open Cats</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon-wrap" style="background: rgba(200, 242, 223, 0.4); color: #2B8A3E;">✨</div>
+          <div>
+            <div class="stat-value tabular-nums" id="stat-awake-cats">0</div>
+            <div class="stat-label">Awake & Active</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon-wrap" style="background: rgba(255, 214, 231, 0.4); color: #D6336C;">🏠</div>
+          <div>
+            <div class="stat-value tabular-nums" id="stat-rooms-count">4</div>
+            <div class="stat-label">Cat Rooms</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon-wrap" style="background: rgba(255, 192, 120, 0.25); color: #E8590C;">💾</div>
+          <div>
+            <div class="stat-value tabular-nums" id="stat-sessions-count">0</div>
+            <div class="stat-label">Saved Sessions</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Search & Quick Navigation Bar -->
+      <section class="search-toolbar">
+        <div class="search-input-wrapper">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          <input type="text" id="dashboard-search" placeholder="Search tabs by title, domain, or press Enter to search the web..." />
+          <button id="btn-clear-search" class="clear-search-btn hidden">&times;</button>
+        </div>
+        <div class="toolbar-actions">
+          <button id="btn-add-tab" class="btn-cozy-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="12" y1="5" x2="12" y2="19"/>
+              <line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
+            <span>Adopt Tab</span>
+          </button>
+          <button id="btn-save-current-session" class="btn-cozy-secondary">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
+              <polyline points="17 21 17 13 7 13 7 21"/>
+              <polyline points="7 3 7 8 15 8"/>
+            </svg>
+            <span>Save Room</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- Room Navigation Bar & Room Management -->
+      <section class="rooms-section">
+        <div class="rooms-header-row">
+          <div class="rooms-tabs-list" id="rooms-tabs-container">
+            <!-- Dynamic room buttons -->
+          </div>
+          <button id="btn-create-room" class="btn-add-room" title="Create a new cat room">
+            <span>+ Add Room</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- Active Tab Cards Grid -->
+      <section class="tabs-grid-section">
+        <div id="tabs-grid" class="tabs-grid">
+          <!-- Injected cat cards -->
+        </div>
+
+        <!-- Empty State with Sleeping Cat -->
+        <div id="grid-empty-state" class="grid-empty-state hidden">
+          <div class="empty-cat-art-large" id="empty-cat-art-large"></div>
+          <h3 class="empty-state-heading">This room is peaceful and quiet</h3>
+          <p class="empty-state-description">No tabs are currently open in this room. Adopt a new tab or move your cats here!</p>
+          <button id="btn-empty-adopt" class="btn-cozy-primary">
+            <span>+ Adopt a New Tab</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- Quick Shortcuts / Recent Sites -->
+      <section class="quick-links-section">
+        <div class="section-title-row">
+          <h4 class="section-title">Cozy Shortcuts</h4>
+          <span class="section-subtitle">Quick access to popular destinations</span>
+        </div>
+        <div class="quick-links-grid" id="quick-links-container">
+          <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="shortcut-card">
+            <span class="shortcut-icon">🐙</span>
+            <span class="shortcut-label">GitHub</span>
+          </a>
+          <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="shortcut-card">
+            <span class="shortcut-icon">▶️</span>
+            <span class="shortcut-label">YouTube</span>
+          </a>
+          <a href="https://wikipedia.org" target="_blank" rel="noopener noreferrer" class="shortcut-card">
+            <span class="shortcut-icon">📖</span>
+            <span class="shortcut-label">Wikipedia</span>
+          </a>
+          <a href="https://reddit.com" target="_blank" rel="noopener noreferrer" class="shortcut-card">
+            <span class="shortcut-icon">💬</span>
+            <span class="shortcut-label">Reddit</span>
+          </a>
+          <a href="https://news.ycombinator.com" target="_blank" rel="noopener noreferrer" class="shortcut-card">
+            <span class="shortcut-icon">📰</span>
+            <span class="shortcut-label">Hacker News</span>
+          </a>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Create Room Modal -->
+  <div id="modal-create-room" class="modal-backdrop hidden">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title">Create Cat Room</h3>
+        <button class="modal-close-btn" data-close-modal="modal-create-room">&times;</button>
+      </div>
+      <div class="modal-body">
+        <label class="modal-label">Room Name</label>
+        <input type="text" id="input-new-room-name" class="modal-input" placeholder="e.g. Design, Research, Music" maxlength="24" />
+        
+        <label class="modal-label">Room Icon</label>
+        <div class="emoji-picker-row" id="emoji-picker-container">
+          <button type="button" class="emoji-opt selected" data-emoji="🐾">🐾</button>
+          <button type="button" class="emoji-opt" data-emoji="🎨">🎨</button>
+          <button type="button" class="emoji-opt" data-emoji="☕">☕</button>
+          <button type="button" class="emoji-opt" data-emoji="🌿">🌿</button>
+          <button type="button" class="emoji-opt" data-emoji="💻">💻</button>
+          <button type="button" class="emoji-opt" data-emoji="🎧">🎧</button>
+          <button type="button" class="emoji-opt" data-emoji="🍜">🍜</button>
+          <button type="button" class="emoji-opt" data-emoji="🌙">🌙</button>
+        </div>
+
+        <label class="modal-label">Room Color</label>
+        <div class="color-picker-row" id="color-picker-container">
+          <button type="button" class="color-opt selected" data-color="#B99AFF" style="background:#B99AFF;"></button>
+          <button type="button" class="color-opt" data-color="#74C0FC" style="background:#74C0FC;"></button>
+          <button type="button" class="color-opt" data-color="#C8F2DF" style="background:#63E6BE;"></button>
+          <button type="button" class="color-opt" data-color="#FFD6E7" style="background:#FF94B8;"></button>
+          <button type="button" class="color-opt" data-color="#FFC078" style="background:#FFC078;"></button>
+          <button type="button" class="color-opt" data-color="#FF8787" style="background:#FF8787;"></button>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-modal-cancel" data-close-modal="modal-create-room">Cancel</button>
+        <button id="btn-save-new-room" class="btn-cozy-primary">Create Room</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Move Tab Room Modal -->
+  <div id="modal-move-room" class="modal-backdrop hidden">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title">Move Cat to Room</h3>
+        <button class="modal-close-btn" data-close-modal="modal-move-room">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-desc" id="move-tab-desc">Choose a room for this tab:</p>
+        <div class="room-selection-list" id="move-room-options"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cat Collection Showcase Modal -->
+  <div id="modal-cat-collection" class="modal-backdrop hidden">
+    <div class="modal-card modal-card-lg">
+      <div class="modal-header">
+        <div>
+          <h3 class="modal-title">Cat Collection Sanctuary</h3>
+          <p class="modal-subtitle">Meet the feline companions representing your tabs</p>
+        </div>
+        <button class="modal-close-btn" data-close-modal="modal-cat-collection">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="cat-collection-grid" id="cat-collection-grid">
+          <!-- Dynamically populated cat breeds -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sessions Manager Modal -->
+  <div id="modal-sessions" class="modal-backdrop hidden">
+    <div class="modal-card modal-card-lg">
+      <div class="modal-header">
+        <div>
+          <h3 class="modal-title">Saved Tab Sessions</h3>
+          <p class="modal-subtitle">Restore or export your cozy tab collections</p>
+        </div>
+        <button class="modal-close-btn" data-close-modal="modal-sessions">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="sessions-list" id="sessions-list-container">
+          <!-- Dynamically loaded saved sessions -->
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button id="btn-export-sessions" class="btn-cozy-secondary">Export JSON</button>
+        <button id="btn-save-new-session-modal" class="btn-cozy-primary">Save Current Tabs</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Audio Synthesizer Script -->
+  <script type="module" src="dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TabKitty Settings</title>
+  <link rel="stylesheet" href="dashboard.css">
+  <link rel="icon" type="image/svg+xml" href="icons/icon128.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    .options-container {
+      max-width: 720px;
+      margin: 40px auto;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 32px;
+      box-shadow: var(--shadow-md);
+    }
+    .options-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 28px;
+    }
+    .setting-group {
+      margin-bottom: 24px;
+    }
+    .setting-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .setting-title {
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .setting-desc {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+    .toggle-switch {
+      position: relative;
+      display: inline-block;
+      width: 44px;
+      height: 24px;
+    }
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .toggle-slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: #E2E8F0;
+      transition: .2s;
+      border-radius: 24px;
+    }
+    .toggle-slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: .2s;
+      border-radius: 50%;
+    }
+    input:checked + .toggle-slider {
+      background-color: var(--lavender);
+    }
+    input:checked + .toggle-slider:before {
+      transform: translateX(20px);
+    }
+    select.setting-select {
+      padding: 8px 14px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--surface-raised);
+      color: var(--text);
+      font-family: inherit;
+      font-size: 13px;
+      outline: none;
+    }
+  </style>
+</head>
+<body class="light-theme">
+  <div class="options-container">
+    <div class="options-header">
+      <img src="icons/icon48.svg" alt="TabKitty" width="48" height="48" style="border-radius:12px;">
+      <div>
+        <h1 style="font-family:'Quicksand',sans-serif;font-size:22px;font-weight:700;">TabKitty Preferences</h1>
+        <p style="font-size:12.5px;color:var(--text-muted);">Customize your feline tab sanctuary</p>
+      </div>
+    </div>
+
+    <!-- Theme Setting -->
+    <div class="setting-group">
+      <div class="setting-row">
+        <div>
+          <div class="setting-title">Appearance Theme</div>
+          <div class="setting-desc">Choose cozy light cream or starry night dark purple</div>
+        </div>
+        <select id="setting-theme" class="setting-select">
+          <option value="light">Cozy Light (Cream & Pastel)</option>
+          <option value="dark">Twilight Dark (Dark Purple)</option>
+          <option value="auto">System Default</option>
+        </select>
+      </div>
+
+      <!-- Sound Setting -->
+      <div class="setting-row">
+        <div>
+          <div class="setting-title">Cozy Sound Effects</div>
+          <div class="setting-desc">Play soft synthesized purrs, meows, and closing pops</div>
+        </div>
+        <label class="toggle-switch">
+          <input type="checkbox" id="setting-sound" checked>
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+
+      <!-- Animations Setting -->
+      <div class="setting-row">
+        <div>
+          <div class="setting-title">Cat Companion Animations</div>
+          <div class="setting-desc">Enable lively blinking, ear twitches, and floating sleeping Zzz</div>
+        </div>
+        <label class="toggle-switch">
+          <input type="checkbox" id="setting-animations" checked>
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+
+      <!-- Chrome Tab Groups -->
+      <div class="setting-row">
+        <div>
+          <div class="setting-title">Sync with Chrome Tab Groups</div>
+          <div class="setting-desc">Automatically mirror Cat Rooms into native Chrome Tab Groups</div>
+        </div>
+        <label class="toggle-switch">
+          <input type="checkbox" id="setting-tab-groups" checked>
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+
+      <!-- Default Cat Mascot -->
+      <div class="setting-row">
+        <div>
+          <div class="setting-title">Primary Cat Mascot</div>
+          <div class="setting-desc">Select your favorite breed for new tabs and hero greeting</div>
+        </div>
+        <select id="setting-default-cat" class="setting-select">
+          <option value="mochi">Mochi (Calico)</option>
+          <option value="oreo">Oreo (Tuxedo)</option>
+          <option value="marmalade">Marmalade (Ginger Tabby)</option>
+          <option value="storm">Storm (Russian Blue)</option>
+          <option value="cocoa">Cocoa (Siamese)</option>
+          <option value="wasabi">Wasabi (Matcha Cat)</option>
+          <option value="luna">Luna (Lavender Dream)</option>
+          <option value="blossom">Blossom (Sakura Cat)</option>
+        </select>
+      </div>
+    </div>
+
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:32px;padding-top:20px;border-top:1px solid var(--border);">
+      <button id="btn-back-dashboard" class="btn-cozy-secondary">← Back to Dashboard</button>
+      <span id="save-status" style="font-size:12px;color:#2B8A3E;font-weight:600;display:none;">✓ Settings saved!</span>
+    </div>
+  </div>
+
+  <script type="module" src="options.js"></script>
+</body>
+</html>
